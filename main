@@ -1,0 +1,101 @@
+
+package ict2100project;
+import java.util.Scanner;
+import java.util.List;
+import java.util.*;
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[]args){
+        Scanner scan = new Scanner(System.in);
+        
+        char input = 'y', finishOrder = 'y';
+        int CustomerNo = 1, receiveOrder = 0, quanOfCB = 0, quanOfBB = 0, quanOfLB = 0, quanOfCH = 0, quanOfBH = 0;
+        double total=0;
+        int totalOfIngredient = quanOfCB+quanOfBB+quanOfLB+quanOfCH+quanOfBH;
+        
+        List updateSystem= new ArrayList();
+        List recordSystem = new LinkedList();
+        
+        
+        
+        System.out.print("Hello! Welcome to this program."
+                            +   "\n\nKey in the quantity of Long Buns: ");
+        int quantLb = scan.nextInt();
+        System.out.print("Key in the quantity of Round Buns: ");
+        int quantRb = scan.nextInt();
+        
+        System.out.print("Key in the quantity of amount of Chicken Burger: ");
+        int quantCB = scan.nextInt();
+        System.out.print("Key in the quantity of amount of Beef Burger: ");
+        int quantBB = scan.nextInt();
+        System.out.print("Key in the quantity of amount of Lamb Burger: ");
+        int quantLB = scan.nextInt();
+        
+        System.out.print("Key in the quantity of amount of Chicken Hotdog: ");
+        int quantCH = scan.nextInt();
+        System.out.print("Key in the quantity of amount of Beef Hotdog: ");
+        int quantBH = scan.nextInt();
+        
+        System.out.println("Thank you for keying the stocks for today!");
+        
+        System.out.println("\nMenu");
+        System.out.println("\nNo.\tType\t\tPrice\n1.\tChicken burger\t4.50\n2.\tBeef burger\t5.00\n3.\tLamb burger\t4.80\n4.\tChicken hotdog\t3.50\n5.\tBeef hotdog\t3.80\n");
+        
+        do{
+            System.out.println("Customer " + CustomerNo);
+            CustomerNo++;
+            do{
+                System.out.print("Key in your order: ");
+                receiveOrder = scan.nextInt();
+                
+                    switch(receiveOrder){
+                        case 1  :   System.out.println("Chicken burger"); break;
+                        case 2  :   System.out.println("Beef burger"); break;
+                        case 3  :   System.out.println("Lamb burger"); break;
+                        case 4  :   System.out.println("Chicken hotdog"); break;
+                        case 5  :   System.out.println("Beef hotdog"); break;
+                    }
+                System.out.print("Key in the quantity:");
+                switch(receiveOrder){
+                    case 1  :   quanOfCB = scan.nextInt(); break;
+                    case 2  :   quanOfBB = scan.nextInt(); break;
+                    case 3  :   quanOfLB = scan.nextInt(); break;
+                    case 4  :   quanOfCH = scan.nextInt(); break;
+                    case 5  :   quanOfBH = scan.nextInt(); break;
+                }
+                switch(receiveOrder){
+                        case 1  :   checkForBalance(quantCB); total+= 4.50 * quanOfCB; break;
+                        case 2  :   total+= 5.00 * quanOfBB; quantBB = quantBB - quanOfBB ;break;
+                        case 3  :   total+= 4.80 * quanOfLB; quantLB = quantLB - quanOfLB ;break;
+                        case 4  :   total+= 3.50 * quanOfCH; quantCH = quantCH - quanOfCH ;break;
+                        case 5  :   total+= 3.80 * quanOfBH; quantBH = quantBH - quanOfBH ;break;
+                    }
+                
+                System.out.println("Your current total is " + total);
+                System.out.print("\nDo you still have order? Yes (y) / No (n): ");
+                finishOrder = scan.next().charAt(0);
+            }while (finishOrder !='n');
+            
+            System.out.println("Total is " + total);
+                updateSystem.add(total);
+           
+           
+            System.out.print("\nContinue (y) or Quit Program (q)?");
+            input = scan.next().charAt(0);
+            
+        } while (input != 'q');
+        
+        System.out.println(updateSystem.get(0));
+        
+    }
+   
+//    public static int checkForBalance(int q){
+//        if (q <=0){
+//            
+//        }
+//        else {
+//            quantCB = quantCB - quanOfCB ;  
+//        }
+//    }
+}
